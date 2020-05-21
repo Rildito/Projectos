@@ -1,0 +1,70 @@
+class Fraction:
+
+    def __init__(self, a=None, b=None):
+        if a is None and b is None:
+            self.num = 1
+            self.den = 2
+        elif b is None:
+            self.num = a
+            self.den = a
+        else:
+            self.num = a
+            self.den = b
+
+    def show(self):
+        print(self.num, "/", self.den)
+
+    def __mul__(self, b):
+        return Fraction(self.num * b.num, self.den * b.den)
+
+    def __add__(self, c=None):
+        if c is None:
+            self.num += 1
+            self.den += 1
+            return Fraction(self.num, self.den)
+        else:
+            return Fraction(self.num + c.num, self.den + c.den)
+
+    def __sub__(self, c=None):
+        if c is None:
+            self.num -= 1
+            self.den -= 1
+            return Fraction(self.num, self.den)
+        else:
+            return Fraction(self.num - c.num, self.den - c.den)
+
+    def __gt__(self):
+        if self.num != 0 or self.den != 0:
+            return True
+        else:
+            return False
+
+
+def init():
+    a = Fraction(5, 8)
+    b = Fraction()
+    c = Fraction(0)
+    a.show()
+    b.show()
+    c.show()
+    d = a
+    d.show()
+    print("Multiplication")
+    a = b*c
+    a.show()
+    print("Increase")
+    a.__add__()
+    a.show()
+    print("Decrease")
+    d = a.__sub__()
+    d.show()
+    a.show()
+    print("True-Else")
+    if c.__gt__():
+        print("Si")
+    else:
+        print("no")
+
+
+if __name__ == '__main__':
+    init()

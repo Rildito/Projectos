@@ -1,7 +1,7 @@
 from multipledispatch import dispatch
 
 class Fraction:
-
+    
     def __init__(self, a=None, b=None):
 
         if a is None and b is None:
@@ -17,31 +17,6 @@ class Fraction:
     def show(self):
         print(self.num, "/", self.den)
 
-    def __mul__(self, b):
-        return Fraction(self.num * b.num, self.den * b.den)
-
-    def __add__(self, c=None):
-        if c is None:
-            self.num += 1
-            self.den += 1
-            return Fraction(self.num, self.den)
-        else:
-            return Fraction(self.num + c.num, self.den + c.den)
-
-    def __sub__(self, c=None):
-        if c is None:
-            self.num -= 1
-            self.den -= 1
-            return Fraction(self.num, self.den)
-        else:
-            return Fraction(self.num - c.num, self.den - c.den)
-
-    def __gt__(self):
-        if self.num != 0 or self.den != 0:
-            return True
-        else:
-            return False
-
     @dispatch(int,int)
     def increases(self, x, y):
         self.num = x
@@ -51,6 +26,7 @@ class Fraction:
     def increases(self, x, y):
         self.num = x
         self.den = y
+
 def init():
     a = Fraction(5, 8)
     b = Fraction()
@@ -58,24 +34,6 @@ def init():
     a.show()
     b.show()
     c.show()
-    d = a
-    d.show()
-    print("Multiplication")
-    a = b*c
-    a.show()
-    print("Increase")
-    a.__add__()
-    a.show()
-    print("Decrease")
-    d = a.__sub__()
-    d.show()
-    a.show()
-    print("True-Else")
-    if c.__gt__():
-        print("Si")
-    else:
-        print("no")
-    print("Using multimethod")
     a.increases(3,3)
     a.show()
     a.increases(5.0,5.0)

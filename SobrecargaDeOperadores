@@ -1,6 +1,9 @@
+from multipledispatch import dispatch
+
 class Fraction:
 
     def __init__(self, a=None, b=None):
+
         if a is None and b is None:
             self.num = 1
             self.den = 2
@@ -39,7 +42,15 @@ class Fraction:
         else:
             return False
 
+    @dispatch(int,int)
+    def increases(self, x, y):
+        self.num = x
+        self.den = y
 
+    @dispatch(float,float)
+    def increases(self, x, y):
+        self.num = x
+        self.den = y
 def init():
     a = Fraction(5, 8)
     b = Fraction()
@@ -64,7 +75,11 @@ def init():
         print("Si")
     else:
         print("no")
-
+    print("Using multimethod")
+    a.increases(3,3)
+    a.show()
+    a.increases(5.0,5.0)
+    a.show()
 
 if __name__ == '__main__':
     init()

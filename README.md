@@ -1,2 +1,2 @@
 # Projectos
-Una pequeña projecto con varios ejercicios realizados en python
+Un pequeño projecto con varios ejercicios realizados en python
